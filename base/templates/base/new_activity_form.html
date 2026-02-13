@@ -1,0 +1,273 @@
+    {% extends 'main.html' %}
+    
+
+    {% block content %}
+    <div class="main-container bg-slate-50">
+        <div class="content-wrapper max-w-3xl">
+            
+            <!-- <div class="page-top-bar">
+                <a href="{{ request.META.HTTP_REFERER }}">
+                <button class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Activities</button>
+                </a>
+            </div> -->
+            <a href="{{ request.META.HTTP_REFERER }}">
+            <button class="back-btn" >
+                <i class="fa-solid fa-arrow-left"></i> Back to Activities
+            </button>
+            </a>
+
+            <div class="form-group">
+                <div class="form-header-dark">
+                    <h1>Create New Activity</h1>
+                    <p>Organize an event for the community.</p>
+                </div>
+            </div>
+
+            <div class="form-card-container">
+                
+                <form id="addEventForm" class="p-8"> 
+                    {% csrf_token %}  
+                    <div class="form-section">
+                        <h3 class="section-label">Basic Details</h3>
+                        
+                        <div class="form-group">
+                            <label>Event Title <span class="text-red">*</span></label>
+                            <input type="text" placeholder="e.g., Intro to Machine Learning Workshop" required>
+                        </div>
+
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label>Event Type</label>
+                                <div class="select-wrapper">
+                                    <select>
+                                        <option value="Workshop">Workshop</option>
+                                        <option value="Hackathon">Hackathon</option>
+                                        <option value="Seminar">Seminar</option>
+                                        <option value="Competition">Competition</option>
+                                        <option value="Social">Social</option>
+                                    </select>
+                                    <i class="fa-solid fa-chevron-down select-arrow"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Status</label>
+                                <div class="select-wrapper">
+                                    <select>
+                                        <option value="Upcoming">Upcoming</option>
+                                        <option value="Live">Live</option>
+                                        <option value="Completed">Completed</option>
+                                    </select>
+                                    <i class="fa-solid fa-chevron-down select-arrow"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label>Start Date <span class="text-red">*</span></label>
+                                <div class="input-wrapper">
+                                    <i class="fa-regular fa-calendar input-icon"></i>
+                                    <input type="text" placeholder="e.g., Oct 15, 2025" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>End Date (Optional)</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-regular fa-calendar input-icon"></i>
+                                    <input type="text" placeholder="e.g., Oct 17, 2025">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label>Time</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-regular fa-clock input-icon"></i>
+                                    <input type="text" placeholder="e.g., 09:00 AM">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Location</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-location-dot input-icon"></i>
+                                    <input type="text" placeholder="e.g., Hall A">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Cover Image URL <span class="text-red">*</span></label>
+                            <div class="input-wrapper">
+                                <i class="fa-regular fa-image input-icon"></i>
+                                <input type="url" placeholder="https://..." required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Description <span class="text-red">*</span></label>
+                            <textarea rows="5" placeholder="Full details about the event..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>More Information (Optional)</label>
+                            <textarea rows="4" placeholder="Prerequisites, FAQs, what to bring, etc."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="section-label">Rounds & Agenda</h3>
+                        
+                        # This is to be rendered using a loops and js 
+                        <div class="adto ded-items-list">
+                            <div class="added-item-card">
+                                <button type="button" class="delete-icon-btn"><i class="fa-regular fa-trash-can"></i></button>
+                                <h4>Ideation Phase</h4>
+                                <div class="meta-row-xs">
+                                    <span>Oct 15, 2025</span>
+                                    <span>09:00 AM</span>
+                                    <span>Main Auditorium</span>
+                                </div>
+                                <p class="desc-xs">Team formation and initial pitching.</p>
+                                <div class="res-list-xs">
+                                    <span class="font-bold">Resources:</span> Pitch Deck Template.pptx (File)
+                                </div>
+                            </div>
+                        </div>
+                        
+                        # Add event form
+                        <div class="nested-form-box">
+                            <h4 class="box-title">Add Event Round</h4>
+                            <div class="form-group">
+                                <input type="text" placeholder="Round Title (e.g. Building Phase)" class="w-full">
+                            </div>
+                            <div class="form-grid-3 mb-3">
+                                <input type="text" placeholder="Date (Optional)">
+                                <input type="text" placeholder="Time (Optional)">
+                                <input type="text" placeholder="Location (Optional)">
+                            </div>
+                            <textarea rows="2" placeholder="Description or Instructions" class="mb-3"></textarea>
+                            
+                            <div class="sub-section-divider">
+                                <span class="sub-label">Round Resources</span>
+                                
+                                <div class="mini-res-list mb-2">
+                                    </div>
+
+                                <div class="resource-input-row">
+                                    <input type="text" placeholder="Resource Name" class="flex-2">
+                                    <input type="text" placeholder="URL" class="flex-2">
+                                    <div class="select-wrapper flex-1">
+                                        <select>
+                                            <option>Link</option>
+                                            <option>PDF</option>
+                                            <option>File</option>
+                                        </select>
+                                    </div>
+                                    <button type="button" class="btn-icon-add bg-nexus-100 text-primary"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+                            
+                            # On clicking this button the data should be added to a dictionary using js
+                            <button type="button" class="btn btn-outline btn-block mt-3">
+                                <i class="fa-solid fa-plus mr-2"></i> Add Round to Event
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="section-label">Resources & Attachments</h3>
+                        
+                        # This is to be rendered using js ans loops
+                        <div class="added-items-list mb-4">
+                            <div class="added-resource-row">
+                                <div class="res-left">
+                                    <i class="fa-solid fa-file-pdf text-red-500 mr-2"></i>
+                                    <span class="res-name font-bold">Rulebook_v1.pdf</span>
+                                    <span class="res-type text-slate-400 text-xs ml-2">(PDF)</span>
+                                </div>
+                                <button type="button" class="delete-icon-btn"><i class="fa-regular fa-trash-can"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="nested-form-box">
+                            <h4 class="box-title">Add New Resource</h4>
+                            <div class="form-grid-6 mb-3">
+                                <div class="col-span-3">
+                                    <input type="text" placeholder="Name (e.g. Slides)" class="w-full">
+                                </div>
+                                <div class="col-span-1">
+                                    <div class="select-wrapper">
+                                        <select>
+                                            <option>Link</option>
+                                            <option>PDF</option>
+                                            <option>Image</option>
+                                            <option>File</option>
+                                        </select>
+                                        <i class="fa-solid fa-chevron-down select-arrow"></i>
+                                    </div>
+                                </div>
+                                <div class="col-span-2">
+                                    <input type="text" placeholder="Size (Optional)" class="w-full">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="URL" class="w-full">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Description (Optional)" class="w-full">
+                            </div>
+
+                            # Onclicking this 
+                            <button type="button" class="btn btn-outline btn-block">
+                                <i class="fa-solid fa-plus mr-2"></i> Add Resource
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="section-label">Post-Event Details</h3>
+                        <p class="helper-text mb-4">Fill these out after the event is completed.</p>
+                        
+                        <div class="form-group">
+                            <label>Registered Count</label>
+                            <input type="number" value="0" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Outcome / Summary</label>
+                            <textarea rows="3" placeholder="Results, winners, or key takeaways..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Event Gallery</label>
+                            <div class="gallery-preview-grid mb-3">
+                                <p class="text-xs text-slate-400 italic">No images added.</p>
+                            </div>
+
+                            <div class="nested-form-box">
+                                <h4 class="box-title">Add Image</h4>
+                                <div class="form-group">
+                                    <input type="url" placeholder="Image URL (Required)">
+                                </div>
+                                <div class="form-grid-2 mb-3">
+                                    <input type="text" placeholder="Title (Optional)">
+                                    <input type="text" placeholder="Description (Optional)">
+                                </div>
+                                <button type="button" class="btn btn-outline btn-block font-nexus">
+                                    <i class="fa-solid fa-plus mr-2"></i> Add to Gallery
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-footer">
+                        <button type="button" class="btn btn-outline" onclick="window.location.href='activities.html'">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Event</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

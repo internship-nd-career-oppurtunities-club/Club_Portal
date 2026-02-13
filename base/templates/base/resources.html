@@ -1,0 +1,154 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <div class="main-container bg-slate-50">
+        <div class="content-wrapper max-w-6xl">
+            
+            <div class="resources-page-header">
+                <div class="header-text">
+                    <h1>Learning Resources</h1>
+                    <p>Curated guides, cheat sheets, and repositories.</p>
+                </div>
+                {% if request.user.is_superuser %}
+                <button class="btn btn-primary btn-add-res" onclick="window.location.href='{% url 'add-resource' %}'">
+                    <i class="fa-solid fa-plus"></i> Add Resource
+                </button>
+                {% endif %}
+            </div>
+
+            <div class="resources-toolbar">
+                <form method="get" action="{% url 'resources' %}">
+                    <div class="search-box-wrapper">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input name="search" placeholder="Search resources (e.g., 'Python', 'Interview')...">
+                    </div>
+                </form>
+                
+                <div class="filter-toggle-group">
+
+
+                    <form method="get" action="{% url 'resources' %}">
+                        
+                            {% if not request.user.is_authenticated %}
+                            <button class="filter-toggle active">All Resources</button>
+                            <a href="{% url 'login' %}">
+                            <button type="button"  class="filter-toggle" >Saved</button>
+                            </a>
+                            {% elif saved == 'True' %}
+                            <button name="saved" value='False' class="filter-toggle ">All Resources</button>
+                            <button name="saved" value='True' class="filter-toggle active ">Saved</button>
+                            {% else %}
+                            <button name="saved" value='False' class="filter-toggle active ">All Resources</button>
+                            <button name="saved" value='True' class="filter-toggle ">Saved</button>
+                            {% endif %}
+
+                                          
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="resources-card-grid">
+                {% for resource in resources %}
+                <!-- <a href="{{ resource.resourcefile }}"> -->
+                <div class="res-grid-item" >
+                    <div class="res-item-top">
+                        <div class="res-type-badge bg-red-50 text-red-600">
+                            <i class="fa-regular fa-file-pdf"></i>
+                        </div>
+                        <div class="res-actions" onclick="window.location.href='{% url 'save-resource' resource.id %}'">
+                            <form method="post" action="">
+                                {% csrf_token %}
+
+                                {% if request.user in resource.saved_by.all %}
+                                <a href="{% url 'save-resource' resource.id %}">
+                                <button class="icon-action-btn"><i class="fa-solid fa-bookmark"></i></button>
+                                </a>
+                                {% else %}
+                                <a href="{% url 'save-resource' resource.id %}">
+                                <button class="icon-action-btn"><i class="fa-regular fa-bookmark"></i></button>
+                                </a>
+                                {% endif %}
+                            </form>
+                            <!-- <button class="icon-action-btn"><i class="fa-solid fa-share-nodes"></i></button> -->
+                        </div>
+                    </div>
+                    
+                    <h3 class="res-item-title">{{ resource.name }}</h3>
+                    <div class="res-item-tags">
+                        <span class="tag-pill">{{ resource.tags }}</span>
+                    </div>
+                    <p class="res-item-desc">{{ resource.description }}</p>
+                    
+                    <div class="res-item-footer">
+                        <span class="res-meta-text">{{ resource.type }} • {{ resource.size }}</span>
+                        <a href="{{resource.resourcefile}}">
+                        <span class="view-details-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+                <!-- </a>                -->
+                {% endfor %}
+
+                <!-- <div class="res-grid-item" onclick="openResourceModal('r2')">
+                    <div class="res-item-top">
+                        <div class="res-type-badge bg-slate-100 text-slate-700">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <div class="res-actions">
+                            <button class="icon-action-btn"><i class="fa-regular fa-bookmark"></i></button>
+                            <button class="icon-action-btn"><i class="fa-solid fa-share-nodes"></i></button>
+                        </div>
+                    </div>
+                    
+                    <h3 class="res-item-title">System Design Primer</h3>
+                    <div class="res-item-tags">
+                        <span class="tag-pill">INTERVIEW</span>
+                    </div>
+                    <p class="res-item-desc">The ultimate guide to scalable system design interviews. Covers load balancing, caching, and sharding.</p>
+                    
+                    <div class="res-item-footer">
+                        <span class="res-meta-text">Code • N/A</span>
+                        <span class="view-details-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+
+                <div class="res-grid-item" onclick="openResourceModal('r3')">
+                    <div class="res-item-top">
+                        <div class="res-type-badge bg-blue-50 text-blue-600">
+                            <i class="fa-solid fa-link"></i>
+                        </div>
+                        <div class="res-actions">
+                            <button class="icon-action-btn"><i class="fa-regular fa-bookmark"></i></button>
+                            <button class="icon-action-btn"><i class="fa-solid fa-share-nodes"></i></button>
+                        </div>
+                    </div>
+                    
+                    <h3 class="res-item-title">React 19 Documentation</h3>
+                    <div class="res-item-tags">
+                        <span class="tag-pill">FRONTEND</span>
+                    </div>
+                    <p class="res-item-desc">Official docs for the upcoming React release. Learn about the new compiler and server actions.</p>
+                    
+                    <div class="res-item-footer">
+                        <span class="res-meta-text">Link • N/A</span>
+                        <span class="view-details-link">View Details <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div> -->
+
+            </div>
+
+            <div class="request-resource-banner">
+                <h3>Missing something?</h3>
+                <p>Request a specific topic or contribute your own notes.</p>
+                <a href="{% url 'contact-us' %}">
+                    <button class="btn btn-primary">Request Resource</button>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}

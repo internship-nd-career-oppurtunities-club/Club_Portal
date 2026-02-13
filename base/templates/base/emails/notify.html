@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>New Submission Details</title>
+    <style type="text/css">
+        /* RESET STYLES */
+        body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+        table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+        img { -ms-interpolation-mode: bicubic; }
+        img { border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+        table { border-collapse: collapse !important; }
+        body { height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important; font-family: 'Helvetica', 'Arial', sans-serif; background-color: #f4f4f4; color: #333333; }
+        
+        /* RESPONSIVE STYLES */
+        @media screen and (max-width: 600px) {
+            .email-container {
+                width: 100% !important;
+                margin: auto !important;
+            }
+            .content-padding {
+                padding: 20px !important;
+            }
+            .details-table td {
+                display: block;
+                width: 100% !important;
+                padding-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0;">
+
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f4f4f4;">
+        <tr>
+            <td align="center" style="padding: 40px 10px;">
+                
+                <table role="presentation" class="email-container" border="0" cellpadding="0" cellspacing="0" width="600" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); overflow: hidden;">
+                    
+                    <tr>
+                        <td bgcolor="#0056b3" style="padding: 20px 30px; text-align: left;">
+                            <h2 style="margin: 0; font-size: 20px; color: #ffffff; text-transform: uppercase; letter-spacing: 1px;">New Inquiry Received</h2>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="content-padding" style="padding: 30px 40px;">
+                            
+                            <p style="margin: 0 0 20px 0; font-size: 16px; color: #555555;">
+                                You have received a new message from the contact form. Here are the details:
+                            </p>
+
+                            <table class="details-table" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 25px;">
+                                <tr>
+                                    <td width="30%" style="font-weight: bold; color: #333333; padding: 5px 0;">Name:</td>
+                                    <td width="70%" style="color: #555555; padding: 5px 0;">{{name}}</td>
+                                </tr>
+                                <tr>
+                                    <td width="30%" style="font-weight: bold; color: #333333; padding: 5px 0;">Email:</td>
+                                    <td width="70%" style="color: #0056b3; padding: 5px 0;">
+                                        <a href="mailto:{{email}}" style="color: #0056b3; text-decoration: none;">{{email}}</a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <hr style="border: 0; border-top: 1px solid #eeeeee; margin: 20px 0;">
+
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-size: 12px; font-weight: bold; color: #888888; text-transform: uppercase; margin-bottom: 5px;">Subject</div>
+                                <div style="background-color: #e3f2fd; padding: 12px 15px; border-left: 4px solid #0056b3; border-radius: 4px; color: #333333; font-weight: bold;">
+                                    {{subject}}
+                                </div>
+                            </div>
+
+                            <div>
+                                <div style="font-size: 12px; font-weight: bold; color: #888888; text-transform: uppercase; margin-bottom: 5px;">Message</div>
+                                <div style="background-color: #f9f9f9; padding: 20px; border: 1px solid #eeeeee; border-radius: 4px; color: #555555; line-height: 1.6; font-family: 'Courier New', Courier, monospace;">
+                                    {{message}}
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="background-color: #eeeeee; padding: 15px; text-align: center; font-size: 12px; color: #999999;">
+                            This is an automated notification from the Internships & Career Opportunities Club system.
+                        </td>
+                    </tr>
+
+                </table>
+                </td>
+        </tr>
+    </table>
+
+</body>
+</html>

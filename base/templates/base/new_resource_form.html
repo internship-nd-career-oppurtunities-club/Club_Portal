@@ -1,0 +1,106 @@
+{% extends 'main.html' %}  
+
+{% block content %}
+    <div class="main-container bg-slate-50">
+        <div class="content-wrapper max-w-3xl">
+            <a href="{% url 'resources' %}">
+            <button class="back-link-btn"> <!-- onclick="window.location.href='{% url 'resources' %}'"-->
+                <i class="fa-solid fa-arrow-left"></i> Back to Resources
+            </button>
+            </a>
+
+            <div class="form-card-container">
+                <div class="form-header-dark">
+                    <h1>Share a Resource</h1>
+                    <p>Contribute to the community knowledge base.</p>
+                </div>
+                <br>
+
+                <form id="addResourceForm" method="post" action="" class="p-8">
+                    {% csrf_token %}
+                    
+                    <div class="form-section-no-border">
+                        
+                        <div class="form-group">
+                            <label for="{{form.name_for_label}}">Resource Title <span class="text-red">*</span></label>
+                            <!-- {{form.name}} -->
+                            <input type="text" 
+                            id="{{form.name_for_label}}"
+                            name="{{form.name.name}}"
+                            value="{{form.name.value|default_if_none:''}}"
+                            placeholder="e.g., Advanced React Patterns 2025" required>
+                        </div>
+
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label>Type</label>
+                                {{form.type}}
+                                <!-- <div class="select-wrapper">
+                                    <i class="fa-regular fa-file select-icon-overlay"></i>
+                                    <select class="pl-icon">
+                                        <option value="Link">Link / Website</option>
+                                        <option value="PDF">PDF Document</option>
+                                        <option value="Code">Code Repository</option>
+                                        <option value="Video">Video Tutorial</option>
+                                    </select>
+                                    <i class="fa-solid fa-chevron-down select-arrow"></i>
+                                </div> -->
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Category / Tags <span class="text-red">*</span></label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-tag input-icon"></i>
+                                    <input type="text" 
+                                    id="{{tags_for_label}}"
+                                    name="{{form.tags.name}}"
+                                    value="{{form.tags.value|default_if_none:''}}"
+                                    placeholder="e.g., AI, Web Dev, Career" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Link / Download URL <span class="text-red">*</span></label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-link input-icon"></i>
+                                <input type="url" 
+                                    id="{{form.resourcefile_for_label}}"
+                                    name="{{ form.resourcefile.name }}"
+                                    value="{{form.resourcefile.value|default_if_none:''}}"
+                                    placeholder="https://..." required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Size / Duration (Optional)</label>
+                            <input type="text"
+                            id="{{form.size_for_label}}"
+                            name="{{ form.size.name }}"
+                            value="{{form.size.value|default_if_none:''}}"
+                            placeholder="e.g., 2.4 MB, 15 mins, or 'GitHub'">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Description <span class="text-red">*</span></label>
+                            <textarea rows="4"
+                            id="{{form.description_for_label}}"
+                            name="{{ form.description.name }}"
+                            value="{{form.description.value|default_if_none:''}}"
+                            placeholder="Briefly describe what this resource covers..." required></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="form-footer">
+                        <a href="{% url 'resources' %}">
+                         <button type="button" class="btn btn-outline" >Cancel</button> <!--onclick="window.location.href='{% url 'resources' %}'" -->
+                        </a>
+                        <button type="submit" class="btn btn-primary">Publish Resource</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

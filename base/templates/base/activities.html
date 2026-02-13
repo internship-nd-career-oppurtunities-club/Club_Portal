@@ -1,0 +1,122 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+ <div class="main-container bg-slate-50">
+        <div class="content-wrapper max-w-7xl">
+            
+            <div class="activities-header">
+                <div>
+                    <h1>Club Activities</h1>
+                    <p>Workshops, Hackathons, and Socials.</p>
+                </div>
+                <div class="activities-actions">
+                    <form method="get" action="{% url 'activities' %}">
+                        <div class="toggle-group">
+                            {% if status == 'Upcoming' %}
+                            <button name="status" value="" class="toggle-btn active">Upcoming</button>
+                            <button name="status" value="Completed" class="toggle-btn">Past Events</button>
+
+                            {% elif status == 'Completed' %}
+                            <button name="status" value="Upcoming" class="toggle-btn">Upcoming</button>
+                            <button name="status" value="" class="toggle-btn active">Past Events</button>
+                            {% else %}
+                            <button name="status" value="Upcoming" class="toggle-btn">Upcoming</button>
+                            <button name="status" value="Completed" class="toggle-btn">Past Events</button>
+                            {% endif %}
+                        </div>                    
+                    </form>
+                    {% if request.user.is_superuser %}
+                    <a href="{% url 'newActivity' %}">
+                    <button class="btn btn-primary">
+                        <i class="fa-solid fa-plus"></i> New Activity
+                    </button>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if status == None or status == 'Upcoming' or status == '' %}
+            <div class="section-block">
+                
+                <div class="section-title-bar border-primary">
+                    <h2>Upcoming Events</h2>
+                </div>
+                
+                <div class="activities-grid">
+                    {% for activity in activities %}
+                    {% if activity.status != 'Completed' %}
+                    <a href="{% url 'activity' activity.id %}">
+                    <div class="activity-card upcoming">
+                        <div class="activity-img">
+                            <img src="{{ activity.banner.url }}" alt="{{ activity.name }}">
+                            <span class="category-badge">{{ activity.type }}</span>
+                            {% if activity.status == 'Ongoing' %}
+                            <div class="live-badge">Live</div>
+                            {% endif %}
+                        </div>
+                        <div class="activity-body">
+                            <div class="activity-date">{{ activity.date }}</div>
+                            <h3>{{ activity.name }}</h3>
+                            <p>{{ activity }}</p>
+                            
+                            <div class="activity-footer">
+                                <span class="reg-count"><i class="fa-regular fa-user"></i> {{ activity.participants.all.count }} Reg.</span>
+                                {% if activity.status == 'Ongoing' %}
+                                <button class="link-btn">Join Session</button>
+                                {% elif activity.status == 'Upcoming' %}
+                                <button class="link-btn">More info & Register</button>
+                                {% else %}
+                                <button class="link-btn">View Gallery</button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+
+                </div>
+            </div>
+            {% endif %}
+            {% if status == None or status == 'Completed' or status == '' %}
+
+            <div class="section-block mt-16">
+                <div class="section-title-bar border-gray">
+                    <h2>Past Highlights</h2>
+                </div>
+                
+                <div class="activities-grid">
+                    {% for activity in activities %}
+                    {% if activity.status == 'Completed' %}
+                    <a href="{% url 'activity' activity.id %}">
+                    <div class="activity-card past">
+                        <div class="activity-img grayscale-mode">
+                            <img src="{{ activity.banner.url }}" alt="{{ activity.name }}">
+                            <span class="category-badge">{{ activity.tag }}</span>
+                        </div>
+                        <div class="activity-body">
+                            <div class="activity-date text-muted">{{ activity.date }}</div>
+                            <h3>{{ activity.name }}</h3>
+                            <p>{{ activity }}</p>
+                            
+                            <div class="activity-footer justify-end">
+                                <button class="link-btn">View Gallery</button>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+
+
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

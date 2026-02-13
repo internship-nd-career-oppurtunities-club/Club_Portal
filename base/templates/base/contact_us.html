@@ -1,0 +1,110 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <div class="contact-page-wrapper">
+        <div class="container">
+            <div class="contact-grid">
+                
+                <div class="contact-info">
+                    <h1>Get in Touch</h1>
+                    <p class="contact-desc">Whether you're a community member to colab, a company wanting to partner, or faculty offering support, we'd love to hear from you.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon-box">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Club Headquarters</h3>
+                                <p>Suvarnamukhi Block<br>Rajiv Gandhi University of Knoeledge and Technologies</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon-box">
+                                <i class="fa-regular fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Email Us</h3>
+                                <p>internshipncoclub@sgcrguktsklm.org.in</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-card">
+                    <form id="contactForm" method="post" class="space-y-6">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text"
+                            id="{{form.name.id_for_label}}"
+                            name="{{form.name.html_name}}"
+                            value="{{form.name.value|default_if_none:''}}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" 
+                            id="{{form.email.id_for_label}}"
+                            name="{{form.email.html_name}}"
+                            value="{{form.email.value|default_if_none:''}}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <div class="select-wrapper">
+                                {{form.subject}}
+                                
+                                <!-- <select>
+                                    <option>General Inquiry</option>
+                                    <option>Suggestion</option>
+                                    <option>Collabaration</option>
+                                    <option>Sponsorship</option>
+                                    <option>Resource Request</option>
+                                    <option>Offer</option>
+                                </select> -->
+                                <i class="fa-solid fa-chevron-down select-arrow"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="{{form.message.id_for_label}}">Message</label>
+                            <textarea rows="4"
+                            id="{{form.message.id_for_label}}"
+                            name="{{form.message.html_name}}"
+                            value="{{form.message.value|default_if_none:''}}" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- <script src="script.js"></script>
+    <script>
+        // Inline script for contact form simulation
+        const contactForm = document.getElementById('contactForm');
+        if(contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const btn = contactForm.querySelector('button');
+                const originalText = btn.innerText;
+                
+                btn.innerText = "Sending...";
+                btn.disabled = true;
+
+                setTimeout(() => {
+                    alert("Message sent successfully! We'll get back to you soon.");
+                    btn.innerText = "Message Sent";
+                    contactForm.reset();
+                    setTimeout(() => {
+                        btn.disabled = false;
+                        btn.innerText = originalText;
+                    }, 2000);
+                }, 1500);
+            });
+        }
+    </script> -->
+
+{% endblock %}

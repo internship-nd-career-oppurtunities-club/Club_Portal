@@ -1,0 +1,107 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <div class="main-container bg-slate-50">
+        <div class="content-wrapper max-w-7xl">
+            <div class="page-heading-row">
+                
+                <div class="page-title-block">
+                    <h1>Meet the Team</h1>
+                    <p>The brilliant minds driving Nexus forward.</p>
+                </div>
+                
+                <!-- <button class="btn btn-primary btn-add-member">
+                    <i class="fa-solid fa-plus"></i> Add Member
+                </button> -->
+            </div>
+
+            <div class="members-grid">
+                {% for member in members %}
+                <a href="{% url 'profile' member.username %}" style="text-decoration: none;">
+                <div class="member-card">
+                    <div class="member-img-box">
+                        <img src="{{member.avatar.url}}" alt="{{member.name}}">
+                        <div class="quick-view-overlay">
+                            <span>Quick View</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>{{member.name}}</h3>
+                        <div class="role-text">{{member.role}}</div>
+                        <div class="meta-text">{{member.branch}} '{{member.passout_year}}</div>
+                    </div>
+                </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Should Develop Later: Modal for Member Quick View -->
+    <!-- <div id="memberModal" class="modal-backdrop">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeMemberModal()"><i class="fa-solid fa-xmark"></i></button>
+            
+            <div class="modal-header-bg"></div>                         
+            
+            <div class="modal-body">
+                <div class="modal-avatar-wrapper">
+                    <img id="modalAvatar" src="" alt="Avatar">
+                </div>
+                
+                <h2 id="modalName">Member Name</h2>
+                <div id="modalRole" class="modal-role">Role</div>
+                
+                <div class="modal-bio">
+                    <p id="modalBio">Bio goes here...</p>
+                </div>
+
+                <div class="modal-skills-section">
+                    <h4>SKILLS</h4>
+                    <div class="tags-container" id="modalSkills">
+                        </div>
+                </div>
+
+                <button class="btn btn-primary btn-block" onclick="window.location.href='profile.html'">View Full Profile</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Inline mock data for modal demo
+        const membersData = {
+            'm1': { name: '{{member.name|escapejs}}', role: '{{member.role}}', bio: '{{member.bio}}', skills: ['Leadership', 'Python', 'Public Speaking'], img: '{{member.avatar.url}}', banner: '{{member.banner.url}}' },
+        };
+
+        function openMemberModal(id) {
+            const data = membersData[id];
+            if(!data) return;
+
+            document.getElementById('modalName').innerText = data.name;
+            document.getElementById('modalRole').innerText = data.role;
+            document.getElementById('modalBio').innerText = data.bio;
+            document.getElementById('modalAvatar').src = data.img;
+            
+            
+            const skillsContainer = document.getElementById('modalSkills');
+            skillsContainer.innerHTML = '';
+            data.skills.forEach(skill => {
+                const span = document.createElement('span');
+                span.className = 'tag-sm';
+                span.innerText = skill;
+                skillsContainer.appendChild(span);
+            });
+
+            document.getElementById('memberModal').classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeMemberModal() {
+            document.getElementById('memberModal').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+    </script> -->
+
+{% endblock %}

@@ -1,0 +1,247 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <div class="main-container bg-slate-50">
+        <div class="content-wrapper max-w-4xl">
+            
+            <div class="page-header">
+                <a href="{% url 'profile' request.user.username %}" style="text-decoration: none;">
+                <button class="back-btn-large" >
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                </a>
+                <h1>Edit Profile</h1>
+            </div>
+
+            <form id="editProfileForm"  method="post" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="card form-card">
+                    <div class="section-header">
+                        <div class="step-circle">1</div>
+                        <h2>Profile Images</h2>
+                    </div>
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="{{ form.avatar.id_for_label }}" >Avatar: </label>
+                            <div class="input-wrapper">
+                                <i class="fa-regular fa-image input-icon"></i>
+                                
+                                <input type="file" 
+                                id="{{ form.avatar.id_for_label }}"
+                                name="{{form.avatar.name}}"
+                                accept="image/*" 
+                                class="img-uploader"
+                                placeholder="https://...">
+                            </div>
+                            <!-- <img src="https://picsum.photos/seed/alex/200/200" id="avatarPreview" class="preview-avatar"> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.banner.id_for_label }}" >Banner: </label>
+                            <div class="input-wrapper">
+                                <i class="fa-regular fa-image input-icon"></i>
+                                <input type="file" 
+                                id="{{ form.banner.id_for_label }}"
+                                name="{{form.banner.name}}"
+                                accept="image/*" 
+                                class="img-uploader"
+                                placeholder="https://...">
+                                <!-- <input type="file" id="bannerInput" name="{{form.banner.banner}}" placeholder="https://..."> -->
+                            </div>
+                            <!-- <img src="https://picsum.photos/seed/tech/1200/400" id="bannerPreview" class="preview-banner"> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card form-card">
+                    <div class="section-header">
+                        <div class="step-circle">2</div>
+                        <h2>Basic Information</h2>
+                    </div>
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            {{form.name}}
+                            <!-- <input type="text" value="Alex Rivera"> -->
+                        </div>
+                        <div class="form-group">
+                            <label>Student ID</label>
+                            {{form.studentID}}
+                            <!-- <input type="text" value="99283712"> -->
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date"
+                            id="{{form.dob.id_for_label}}"
+                            name="{{form.dob.name}}"
+                            value="{{form.dob.value|default_if_none:''}}">
+                        </div>
+                        <div class="form-group">
+                            <label>Gender</label>
+                            {{form.gender}}
+                            <!-- <div class="select-wrapper">
+                                <select>
+                                    <option value="Male" selected>Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Non-binary">Non-binary</option>
+                                    <option value="Prefer not to say">Prefer not to say</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down select-arrow"></i>
+                            </div> -->
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Bio</label>
+                            {{form.bio}}
+                            <!-- <textarea rows="3">Aspiring software engineer with a deep love for cloud computing, open source, and strong coffee. Currently building a decentralized voting app.</textarea> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card form-card">
+                    <div class="section-header">
+                        <div class="step-circle">3</div>
+                        <h2>Academic Information</h2>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label>College/University</label>
+                        {{form.college}}
+                        <!-- <input type="text" value="Nexus Institute of Technology"> -->
+                    </div>
+                    <div class="form-grid-3">
+                        <div class="form-group">
+                            <label>Branch (Major)</label>
+                            {{form.branch}}
+                            <!-- <input type="text" value="Computer Science"> -->
+                        </div>
+                        <div class="form-group">
+                            <label>Semester</label>                            
+                            <input type="text"
+                            id="{{form.semester.id_for_label}}"
+                            value="{{form.semester.value|default_if_none:''}}"
+                            name="{{form.semester.name}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="{{form.passout_year.id_for_label}}">Passout Year</label>
+                            <input type="text" 
+                            id="{{form.passout_year.id_for_label}}"
+                            value="{{form.passout_year.value|default_if_none:''}}"
+                            name="{{form.passout_year.name}}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card form-card">
+                    <div class="section-header">
+                        <div class="step-circle">4</div>
+                        <h2>Contact Details</h2>
+                    </div>
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <div class="input-wrapper">
+                                <i class="fa-regular fa-envelope input-icon"></i>
+                                {{form.email}}
+                                <!-- <input type="email" value="alex.rivera@nexus.edu"> -->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-phone input-icon"></i>
+                                <input type="tel"
+                                id="{{form.phone.id_for_label}}"
+                                name="{{form.phone.name}}"
+                                value="{{form.phone.value|default_if_none:''}}">
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Address</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-location-dot input-icon"></i>    
+                                <input type="text" 
+                                id="{{form.address.id_for_label}}"
+                                name="{{form.address.name}}"
+                                value="{{form.address.value|default_if_none:''}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card form-card">
+                    <div class="section-header">
+                        <div class="step-circle">5</div>
+                        <h2>Links & Socials</h2>
+                    </div>
+                    
+                    <div class="form-grid-2 mb-6">
+                        <div class="form-group">
+                            <label>Resume URL</label>
+                            <div class="input-wrapper">
+                                <i class="fa-regular fa-file input-icon"></i>
+                                <input type="url" 
+                                id="{{form.resume.id_for_label}}"
+                                value="{{form.resume.value|default_if_none:''}}"
+                                name="{{ form.resume.html_name }}"
+                                placeholder="https://...">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Portfolio URL</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-link input-icon"></i>
+                                <input type="url" 
+                                id="{{form.portfolio.id_for_label}}"
+                                value="{{form.portfolio.value|default_if_none:''}}"
+                                name="{{form.portfolio.name}}"
+                                placeholder="https://...">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-inputs">
+                        <div class="form-group">
+                            <label>LinkedIn</label>
+                            <div class="input-wrapper">
+                                <i class="fa-brands fa-linkedin-in input-icon text-linkedin"></i>
+                                <input type="url" 
+                                id="{{form.linkedIn.id_for_label}}"
+                                value="{{form.linkedIn.value|default_if_none:''}}"
+                                name="{{form.linkedIn.name}}"
+                                placeholder="https://linkedin.com/in/...">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>GitHub</label>
+                            <div class="input-wrapper">
+                                <i class="fa-brands fa-github input-icon text-github"></i>
+                                <input type="url" 
+                                id="{{form.github.id_for_label}}"
+                                value="{{form.github.value|default_if_none:''}}"
+                                name="{{form.github.name}}"
+                                placeholder="https://github.com/...">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Instagram</label>
+                            <div class="input-wrapper">
+                                <i class="fa-brands fa-instagram input-icon text-insta"></i>
+                                <input type="url" 
+                                id="{{form.instagram.id_for_label}}"
+                                value="{{form.instagram.value|default_if_none:''}}"
+                                name="{{form.instagram.name}}"
+                                placeholder="https://instagram.com/...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-save">Save Changes</button>
+                    <a href="{% url 'profile' request.user.username %}" style="text-decoration: none;">
+                    <button type="button" class="btn btn-cancel">Cancel</button>
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}

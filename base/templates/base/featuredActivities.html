@@ -1,0 +1,83 @@
+    <section class="activities-section">
+        <div class="container">
+            <div class="section-header-flex">
+                <div>
+                    <h2>Featured Activities</h2>
+                    <p class="sub-text">Join us at our next meetup or workshop.</p>
+                </div>
+                <a href="{% url 'activities' %}" class="view-all-link">View All <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+
+            <div class="events-grid">
+                <!-- <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://picsum.photos/seed/hackathon/800/600" alt="HackTheFuture">
+                        <span class="event-tag">Hackathon</span>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">Oct 15, 2025</div>
+                        <h3>HackTheFuture 2025</h3>
+                        <p>Our annual flagship 48-hour hackathon. Join us for a weekend of innovation, coding, and collaboration.</p>
+                        <a href="#" class="event-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://picsum.photos/seed/ai/800/600" alt="AI Ethics">
+                        <span class="event-tag">Seminar</span>
+                        <span class="event-status live">Live</span>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">Nov 02, 2025</div>
+                        <h3>AI Ethics Symposium</h3>
+                        <p>A deep dive into the moral implications of Artificial General Intelligence and bias in algorithms.</p>
+                        <a href="#" class="event-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://picsum.photos/seed/quantum/800/600" alt="Quantum">
+                        <span class="event-tag">Workshop</span>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">Nov 10, 2025</div>
+                        <h3>Intro to Quantum Computing</h3>
+                        <p>Understand Qubits, Superposition, and Entanglement. Designed for beginners with linear algebra knowledge.</p>
+                        <a href="#" class="event-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div> -->
+                {% for activity in activities %}
+                {% if activity.status != 'Completed' %}
+                <a href="{% url 'activity' activity.id %}">
+                <div class="activity-card upcoming">
+                    <div class="activity-img">
+                        <img src="{{ activity.banner.url }}" alt="{{ activity.name }}">
+                        <span class="category-badge">{{ activity.type }}</span>
+                        {% if activity.status == 'Ongoing' %}
+                        <div class="live-badge">Live</div>
+                        {% endif %}
+                    </div>
+                    <div class="activity-body">
+                        <div class="activity-date">{{ activity.date }}</div>
+                        <h3>{{ activity.name }}</h3>
+                        <p>{{ activity }}</p>
+                        
+                        <div class="activity-footer">
+                            <span class="reg-count"><i class="fa-regular fa-user"></i> {{ activity.participants.all.count }} Reg.</span>
+                            {% if activity.status == 'Ongoing' %}                                <button class="link-btn">Join Session</button>
+                            {% elif activity.status == 'Upcoming' %}
+                            <button class="link-btn">More info & Register</button>
+                            {% else %}
+                            <button class="link-btn">View Gallery</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                </a>
+                {% endif %}
+                {% endfor %}
+        </div>
+    </div>
+</section>

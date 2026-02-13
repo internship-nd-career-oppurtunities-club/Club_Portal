@@ -1,0 +1,65 @@
+{% load static %}
+<nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-content">
+                <!-- <a href="{% url 'home' %}" style="text-decoration: none;"> -->
+                <div class="nav-logo" onclick="window.location.href='{% url 'home' %}'" >
+                        <img src="{% static 'images/ico_logo.png' %}" alt="User" class="nav-avatar">
+                    <span class="logo-text">I&CO    <span>Club</span></span>
+                </div>
+                <!-- </a> -->
+
+                <div class="nav-desktop">
+                    <a href="{% url 'members' %}" class="nav-link">Members</a>
+                    <a href="{% url 'activities' %}" class="nav-link">Activities</a>
+                    <a href="{% url 'resources' %}" class="nav-link">Resources</a>
+                    <a href="{% url 'forum' %}" class="nav-link">Forum</a>
+                    <a href="{% url 'contact-us' %}" class="nav-link">Contact</a>
+
+                    <div class="profile-dropdown-container">
+                        <button class="profile-btn" id="profileDropdownBtn">
+                            {% if not request.user.is_authenticated %}
+                            <img src="{% static 'media/avatar.svg' %}" alt="User" class="nav-avatar">
+                            {% else %}
+                            <img src="{{request.user.avatar.url}}" alt="User" class="nav-avatar">
+                            {% endif %}
+                            <div class="status-indicator"></div>
+                        </button>
+                        
+                        <div class="dropdown-menu" id="profileDropdown">
+                            {% if request.user.is_authenticated %}
+                            <a href="{% url 'profile' request.user.username %}" class="dropdown-item">My Profile</a>
+                            <a href="{% url 'update-profile' %}" class="dropdown-item">Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="{% url 'logout' %}" class="dropdown-item text-red">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign out
+                            </a>
+                            {% else %}
+                            <a href="{% url 'login' %}" class="dropdown-item">Login</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="{% url 'members' %}" class="mobile-link">Members</a>
+            <a href="{% url 'activities' %}" class="mobile-link">Activities</a>
+            <a href="{% url 'resources' %}" class="mobile-link">Resources</a>
+            <a href="{% url 'forum' %}" class="mobile-link">Forum</a>
+            <a href="{% url 'contact-us' %}" class="mobile-link">Contact</a>
+            <div class="mobile-divider"></div>
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'profile' request.user.username %}" class="mobile-link">My Profile</a>
+            <a href="{% url 'logout' %}" class="mobile-link text-red">Sign Out</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="mobile-link">Login</a>
+            {% endif %}
+            
+        </div>
+    </nav>

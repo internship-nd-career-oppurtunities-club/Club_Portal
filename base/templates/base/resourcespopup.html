@@ -1,0 +1,92 @@
+<div id="resourceModal" class="modal-backdrop">
+        <div class="modal-content">
+            <div class="modal-body p-6">
+                <button class="modal-close-corner" onclick="closeResourceModal()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <div class="res-modal-layout">
+                    <div id="modalIconContainer" class="modal-big-icon">
+                        </div>
+                    
+                    <div class="res-modal-content">
+                        <h3 id="modalTitle" class="modal-heading-lg">Resource Title</h3>
+                        
+                        <div class="modal-badges-row">
+                            <span id="modalCategory" class="badge-pill">Category</span>
+                            <span id="modalType" class="badge-pill">Type</span>
+                            <span id="modalSize" class="badge-pill">Size</span>
+                        </div>
+                        
+                        <div class="modal-desc-box">
+                            <p id="modalDesc">Description goes here...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer-row">
+                    <a id="modalDownloadBtn" href="#" target="_blank" class="btn btn-primary btn-block flex items-center justify-center">
+                        <i class="fa-solid fa-download mr-2"></i> <span id="modalActionText">Download</span>
+                    </a>
+                    <button class="btn btn-outline btn-block mt-2" onclick="closeResourceModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Mock Data for Modal Logic
+        const resourcesData = {
+            'r1': { 
+                title: 'Python Cheatsheet 2025', 
+                category: 'PYTHON', type: 'PDF', size: '2.4 MB', 
+                desc: 'Complete syntax guide for Python 3.12 including new typing features and async patterns.', 
+                url: '#', iconClass: 'fa-regular fa-file-pdf', colorClass: 'bg-red-100 text-red-600'
+            },
+            'r2': { 
+                title: 'System Design Primer', 
+                category: 'INTERVIEW', type: 'Code', size: '', 
+                desc: 'The ultimate guide to scalable system design interviews. Covers load balancing, caching, and sharding.', 
+                url: '#', iconClass: 'fa-solid fa-code', colorClass: 'bg-slate-100 text-slate-700'
+            },
+            'r3': { 
+                title: 'React 19 Documentation', 
+                category: 'FRONTEND', type: 'Link', size: '', 
+                desc: 'Official docs for the upcoming React release. Learn about the new compiler and server actions.', 
+                url: '#', iconClass: 'fa-solid fa-link', colorClass: 'bg-blue-100 text-blue-600'
+            }
+        };
+
+        function openResourceModal(id) {
+            const data = resourcesData[id];
+            if(!data) return;
+
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalCategory').innerText = data.category;
+            document.getElementById('modalType').innerText = data.type;
+            
+            const sizeBadge = document.getElementById('modalSize');
+            if(data.size) {
+                sizeBadge.innerText = data.size;
+                sizeBadge.style.display = 'inline-flex';
+            } else {
+                sizeBadge.style.display = 'none';
+            }
+
+            document.getElementById('modalDesc').innerText = data.desc;
+            
+            const iconContainer = document.getElementById('modalIconContainer');
+            iconContainer.className = `modal-big-icon ${data.colorClass}`;
+            iconContainer.innerHTML = `<i class="${data.iconClass}"></i>`;
+
+            const actionText = document.getElementById('modalActionText');
+            actionText.innerText = data.type === 'Link' ? 'Open Link' : 'Download Resource';
+
+            document.getElementById('resourceModal').classList.add('show');
+        }
+
+        function closeResourceModal() {
+            document.getElementById('resourceModal').classList.remove('show');
+        }
+    </script>
