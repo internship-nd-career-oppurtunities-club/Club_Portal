@@ -8,8 +8,6 @@
 
 **A centralized digital platform transforming club management in educational institutions**
 
-[View Demo](#) • [Watch Video](#) • [Live Site](#)
-
 </div>
 
 ---
@@ -39,37 +37,6 @@ A comprehensive web platform that brings everything under one roof:
 ✅ Automated email notifications  
 ✅ Professional club presence online  
 ✅ Real-time participation tracking  
-
----
-
-## 🎥 Project Showcase
-
-### Screenshots
-
-<table>
-  <tr>
-    <td width="50%">
-      <img src="static/images/screenshots/home.png" alt="Home Page">
-      <p align="center"><b>Landing Page</b> - Clean, modern interface</p>
-    </td>
-    <td width="50%">
-      <img src="static/images/screenshots/activities.png" alt="Events">
-      <p align="center"><b>Event Management</b> - Browse and register for events</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <img src="static/images/screenshots/profile.png" alt="Profile">
-      <p align="center"><b>Member Profiles</b> - Professional member directory</p>
-    </td>
-    <td width="50%">
-      <img src="static/images/screenshots/resources.png" alt="Resources">
-      <p align="center"><b>Resource Library</b> - Searchable learning materials</p>
-    </td>
-  </tr>
-</table>
-
-> *Note: Screenshot placeholders - actual screenshots to be added*
 
 ---
 
@@ -694,32 +661,6 @@ flowchart LR
 - 💳 Payment integration
 - 🎥 Video streaming for events
 - 📈 Advanced analytics
-
----
-
-## 📞 Project Information
-
-### Developer
-
-**[Your Name]**
-- 🎓 [Your Institution/Program]
-- 📧 [Your Email]
-- 💼 [LinkedIn Profile]
-- 🐙 [GitHub Profile]
-
-### Project Links
-
-- **Repository**: [GitHub Link]
-- **Live Demo**: [Demo Link]
-- **Documentation**: This README
-- **Video Demo**: [YouTube Link]
-
-### Project Timeline
-
-- **Started**: January 2025
-- **Current Status**: Under Active Development
-- **Version**: 0.1.0-alpha
-- **Target Completion**: [Your Timeline]
 
 ---
 
