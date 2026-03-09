@@ -88,9 +88,9 @@ WSGI_APPLICATION = 'icoportal.wsgi.application'
 # Database
 DATABASES = {
     'default': dj_database_url.config(
-        default=config('DATABASE_URL'),
+        default=config('DATABASE_URL', default=''),
         conn_max_age=600
-    )  
+    )
 }
 
 
