@@ -130,7 +130,7 @@ class Activities(models.Model):
     endtime = models.TimeField(blank=True, null=True)
     venue = models.CharField(max_length=255, blank=True, null=True)
 
-    rounds_included = models.ManyToManyField( Rounds, related_name='activity_rounds', blank=True, null=True)
+    rounds_included = models.ManyToManyField( Rounds, related_name='activity_rounds', blank=True)
     resources_included = models.ManyToManyField( Resources, related_name='activity_resources', blank=True)
     class Meta:
         ordering = ['-updated', '-created']
