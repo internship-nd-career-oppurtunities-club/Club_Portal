@@ -3,6 +3,7 @@ set -o errexit
 
 pip install -r requirements.txt
 
-python manage.py collectstatic --no-input
+python manage.py collectstatic --no-input --settings=icoportal.settings.prod
 
-python manage.py migrate
+python manage.py migrate --settings=icoportal.settings.prod
+
