@@ -12,7 +12,7 @@
 
 ---
 
-## 📖 About The Project
+## 📖 Aim of The Project
 
 ICOPortal (Internships and Opportunities Club Portal) is a web-based platform designed to solve the everyday challenges of managing a student club. Built as a complete solution to replace scattered WhatsApp groups, manual registrations, and disorganized resource sharing with a single, unified digital platform.
 
