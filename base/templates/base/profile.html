@@ -24,7 +24,7 @@
 
                 <div class="header-content">
                     <div class="header-flex">
-                        {% if user.profile.avatar %}
+                        {% if user.avatar %}
                             <img src="{{ user.avatar.url }}" alt="{{ user.username }}" class="profile-avatar">
                         {% else %}
                             <img src="{% static 'images/default-avatar.png' %}" alt="{{ user.username }}" class="profile-avatar">
