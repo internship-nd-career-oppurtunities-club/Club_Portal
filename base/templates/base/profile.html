@@ -24,8 +24,11 @@
 
                 <div class="header-content">
                     <div class="header-flex">
-                        <img src="{{user.avatar.url}}" alt="{{user.username}}" class="profile-avatar">
-                        
+                        {% if user.profile.avatar %}
+                            <img src="{{ user.avatar.url }}" alt="{{ user.username }}" class="profile-avatar">
+                        {% else %}
+                            <img src="{% static 'images/default-avatar.png' %}" alt="{{ user.username }}" class="profile-avatar">
+                        {% endif %}
                         <div class="header-info">
                             <h1 class="profile-name">{{user.name}}</h1>
                             <p class="profile-role">{{user.role}}</p>
