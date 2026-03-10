@@ -49,8 +49,6 @@ wheels/
 local_settings.py
 icoportal/settings/base.py
 icoportal/settings/dev.py
-*/migrations/*
-!*/migrations/__init__.py
 icoportal.zip
 
 # OS
