@@ -31,7 +31,7 @@ class User(AbstractUser):
     ]
     branch = models.CharField(max_length=50, choices=Branch_choices, blank=True, null=True)
     passout_year = models.IntegerField(blank=True, null=True)
-    semester = models.CharField(blank=True, null=True)
+    semester = models.CharField(max_length=50, blank=True, null=True)
 
 
     studentID = models.CharField(max_length=20, blank=True, unique=True, null=True  )
