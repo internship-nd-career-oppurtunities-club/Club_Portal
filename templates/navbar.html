@@ -19,7 +19,7 @@
                     <div class="profile-dropdown-container">
                         <button class="profile-btn" id="profileDropdownBtn">
                             {% if not request.user.is_authenticated %}
-                            <img src="{% static 'media/avatar.svg' %}" alt="User" class="nav-avatar">
+                            <img src="{% static 'images/avatar.svg' %}" alt="User" class="nav-avatar">
                             {% else %}
                             <img src="{{request.user.avatar.url}}" alt="User" class="nav-avatar">
                             {% endif %}
