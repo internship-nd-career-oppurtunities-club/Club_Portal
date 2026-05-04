@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-
+{% load static %}
 {% block content %}
 
 <!-- <img src="{{request.user.avatar.url}}" width="20px" height="20px" style="border-radius: 50%;"> {{request.user.username}}
@@ -24,10 +24,13 @@
 
                 <div class="header-content">
                     <div class="header-flex">
-                        <img src="{{user.avatar.url}}" alt="{{user.username}}" class="profile-avatar">
-                        
+                        {% if user.avatar %}
+                            <img src="{{ user.avatar.url }}" alt="{{ user.username }}" class="profile-avatar">
+                        {% else %}
+                            <img src="{% static 'images/default-avatar.png' %}" alt="{{ user.username }}" class="profile-avatar">
+                        {% endif %}
                         <div class="header-info">
-                            <h1 class="profile-name">{{user.name}}</h1>
+                            <h1 class="profile-name" style="color: white; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">{{user.name}}</h1>
                             <p class="profile-role">{{user.role}}</p>
                             <!-- <div class="profile-joined">
                                 <span>Joined {{user.joined_date}}</span>

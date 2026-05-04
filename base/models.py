@@ -6,8 +6,8 @@ from django.db.models import Q, Case, When, Value, IntegerField
 # Create your models here.
 class User(AbstractUser):
     name = models.CharField(max_length=255,)
-    avatar = models.ImageField(default='avatar.svg', blank=True, null=True)
-    banner = models.ImageField(default='banner.jpg', blank=True, null=True)
+    avatar = models.ImageField(default='avatar.svg',upload_to='avatars/', blank=True, null=True)
+    banner = models.ImageField(default='banner.jpg', upload_to='banners/', blank=True, null=True)
     membership_choices = [
         ('Student', 'Student'),
         ('Executive Member', 'Executive Member'),
