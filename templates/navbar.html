@@ -19,11 +19,14 @@
                     <div class="profile-dropdown-container">
                         <button class="profile-btn" id="profileDropdownBtn">
                             {% if not request.user.is_authenticated %}
-                            <img src="{% static 'media/avatar.svg' %}" alt="User" class="nav-avatar">
-                            {% else %}
+                            <img src="{% static 'images/avatar.svg' %}" alt="User" class="nav-avatar">
+                            {% elif request.user.avatar %}
                             <img src="{{request.user.avatar.url}}" alt="User" class="nav-avatar">
+                            {% else %}
+                            <img src="{% static 'images/avatar.svg' %}" alt="User" class="nav-avatar">
                             {% endif %}
-                            <div class="status-indicator"></div>
+
+                            <!-- <div class="status-indicator"></div> -->
                         </button>
                         
                         <div class="dropdown-menu" id="profileDropdown">
