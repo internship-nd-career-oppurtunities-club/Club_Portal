@@ -11,9 +11,9 @@
 
                 <div class="nav-desktop">
                     <a href="{% url 'members' %}" class="nav-link">Members</a>
-                    <a href="{% url 'activities' %}" class="nav-link">Activities</a>
+                    <!-- <a href="{% url 'activities' %}" class="nav-link">Activities</a> -->
                     <a href="{% url 'resources' %}" class="nav-link">Resources</a>
-                    <a href="{% url 'forum' %}" class="nav-link">Forum</a>
+                    <!-- <a href="{% url 'forum' %}" class="nav-link">Forum</a> -->
                     <a href="{% url 'contact-us' %}" class="nav-link">Contact</a>
 
                     <div class="profile-dropdown-container">
@@ -52,9 +52,9 @@
 
         <div class="mobile-menu" id="mobileMenu">
             <a href="{% url 'members' %}" class="mobile-link">Members</a>
-            <a href="{% url 'activities' %}" class="mobile-link">Activities</a>
+            <!-- <a href="{% url 'activities' %}" class="mobile-link">Activities</a> -->
             <a href="{% url 'resources' %}" class="mobile-link">Resources</a>
-            <a href="{% url 'forum' %}" class="mobile-link">Forum</a>
+            <!-- <a href="{% url 'forum' %}" class="mobile-link">Forum</a> -->
             <a href="{% url 'contact-us' %}" class="mobile-link">Contact</a>
             <div class="mobile-divider"></div>
             {% if request.user.is_authenticated %}

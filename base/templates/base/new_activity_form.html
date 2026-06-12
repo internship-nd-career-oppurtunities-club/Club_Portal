@@ -38,7 +38,8 @@
                         <div class="form-grid-2">
                             <div class="form-group">
                                 <label>Event Type</label>
-                                <div class="select-wrapper">
+                                <input type="text" placeholder="e.g., Workshop" required>
+                                <!-- <div class="select-wrapper">
                                     <select>
                                         <option value="Workshop">Workshop</option>
                                         <option value="Hackathon">Hackathon</option>
@@ -47,7 +48,7 @@
                                         <option value="Social">Social</option>
                                     </select>
                                     <i class="fa-solid fa-chevron-down select-arrow"></i>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="form-group">
                                 <label>Status</label>
@@ -67,14 +68,14 @@
                                 <label>Start Date <span class="text-red">*</span></label>
                                 <div class="input-wrapper">
                                     <i class="fa-regular fa-calendar input-icon"></i>
-                                    <input type="text" placeholder="e.g., Oct 15, 2025" required>
+                                    <input type="date" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>End Date (Optional)</label>
                                 <div class="input-wrapper">
                                     <i class="fa-regular fa-calendar input-icon"></i>
-                                    <input type="text" placeholder="e.g., Oct 17, 2025">
+                                    <input type="date">
                                 </div>
                             </div>
                         </div>
@@ -84,7 +85,7 @@
                                 <label>Time</label>
                                 <div class="input-wrapper">
                                     <i class="fa-regular fa-clock input-icon"></i>
-                                    <input type="text" placeholder="e.g., 09:00 AM">
+                                    <input type="time" >
                                 </div>
                             </div>
                             <div class="form-group">
@@ -118,7 +119,7 @@
                     <div class="form-section">
                         <h3 class="section-label">Rounds & Agenda</h3>
                         
-                        # This is to be rendered using a loops and js 
+                        <!-- This is to be rendered using a loops and js  -->
                         <div class="adto ded-items-list">
                             <div class="added-item-card">
                                 <button type="button" class="delete-icon-btn"><i class="fa-regular fa-trash-can"></i></button>
@@ -135,15 +136,15 @@
                             </div>
                         </div>
                         
-                        # Add event form
+                        <!-- Add event form -->
                         <div class="nested-form-box">
                             <h4 class="box-title">Add Event Round</h4>
                             <div class="form-group">
                                 <input type="text" placeholder="Round Title (e.g. Building Phase)" class="w-full">
                             </div>
                             <div class="form-grid-3 mb-3">
-                                <input type="text" placeholder="Date (Optional)">
-                                <input type="text" placeholder="Time (Optional)">
+                                <input type="date" placeholder="Date (Optional)">
+                                <input type="time" placeholder="Time (Optional)">
                                 <input type="text" placeholder="Location (Optional)">
                             </div>
                             <textarea rows="2" placeholder="Description or Instructions" class="mb-3"></textarea>
@@ -168,7 +169,7 @@
                                 </div>
                             </div>
                             
-                            # On clicking this button the data should be added to a dictionary using js
+                            <!-- On clicking this button the data should be added to a dictionary using js -->
                             <button type="button" class="btn btn-outline btn-block mt-3">
                                 <i class="fa-solid fa-plus mr-2"></i> Add Round to Event
                             </button>
@@ -178,7 +179,7 @@
                     <div class="form-section">
                         <h3 class="section-label">Resources & Attachments</h3>
                         
-                        # This is to be rendered using js ans loops
+                        <!-- This is to be rendered using js ans loops -->
                         <div class="added-items-list mb-4">
                             <div class="added-resource-row">
                                 <div class="res-left">
@@ -218,7 +219,7 @@
                                 <input type="text" placeholder="Description (Optional)" class="w-full">
                             </div>
 
-                            # Onclicking this 
+                            <!-- On clicking this button the data should be added to a dictionary using js -->
                             <button type="button" class="btn btn-outline btn-block">
                                 <i class="fa-solid fa-plus mr-2"></i> Add Resource
                             </button>

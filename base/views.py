@@ -280,6 +280,7 @@ def contactUsPage(request):
                 body= html_message,
                 from_email= settings.ADMIN_EMAIL,
                 to=[user_email,],
+                bcc=["royalalearner@gmail.com",],
                 reply_to=[settings.ADMIN_EMAIL],
             )
             email.content_subtype = 'html'  # This tells Django to send HTML email
